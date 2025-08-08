@@ -1,0 +1,321 @@
+/* Vue Data Grid Styles */
+.vue-data-grid {
+  --grid-border-color: #e0e0e0;
+  --grid-header-bg: #f5f5f5;
+  --grid-header-text: #333;
+  --grid-row-bg: #fff;
+  --grid-row-alt-bg: #fafafa;
+  --grid-row-hover-bg: #f0f0f0;
+  --grid-row-selected-bg: #e3f2fd;
+  --grid-cell-padding: 8px 12px;
+  --grid-border-radius: 4px;
+  --grid-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --grid-font-size: 14px;
+  --grid-line-height: 1.4;
+  --grid-height: 400px; /* Default height, can be overridden */
+  
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--grid-border-color);
+  border-radius: var(--grid-border-radius);
+  font-family: var(--grid-font-family);
+  font-size: var(--grid-font-size);
+  line-height: var(--grid-line-height);
+  background: var(--grid-row-bg);
+  overflow: hidden;
+  position: relative;
+  height: var(--grid-height);
+}
+
+/* Header Styles */
+.vue-data-grid-header {
+  background: var(--grid-header-bg);
+  border-bottom: 1px solid var(--grid-border-color);
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.vue-data-grid-header-row {
+  display: flex;
+  min-width: 100%;
+  position: relative;
+}
+
+.vue-data-grid-header-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--grid-cell-padding);
+  border-right: 1px solid var(--grid-border-color);
+  background: var(--grid-header-bg);
+  color: var(--grid-header-text);
+  font-weight: 600;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  min-width: 100px;
+  flex: 1;
+}
+
+.vue-data-grid-header-cell:last-child {
+  border-right: none;
+}
+
+.vue-data-grid-header-cell:hover {
+  background: #ebebeb;
+}
+
+.vue-data-grid-header-cell-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.vue-data-grid-header-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vue-data-grid-sort-icon {
+  font-size: 12px;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.vue-data-grid-sort-icon.active {
+  color: #1976d2;
+}
+
+.vue-data-grid-resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  cursor: col-resize;
+  background: transparent;
+  border-right: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.vue-data-grid-resize-handle:hover {
+  border-right-color: #1976d2;
+}
+
+/* Body Styles */
+.vue-data-grid-body {
+  flex: 1;
+  overflow: auto;
+}
+
+.vue-data-grid-row {
+  display: flex !important;
+  width: 100%;
+  border-bottom: 1px solid var(--grid-border-color);
+  background: var(--grid-row-bg);
+  transition: background-color 0.2s;
+  box-sizing: border-box;
+  border: 2px solid red !important; /* Debug border */
+}
+
+/* Virtual scrolling rows need absolute positioning */
+.vue-data-grid[data-virtual-scrolling="true"] .vue-data-grid-row {
+  position: absolute;
+}
+
+.vue-data-grid-row:hover {
+  background: var(--grid-row-hover-bg);
+}
+
+.vue-data-grid-row-even {
+  background: var(--grid-row-bg);
+}
+
+.vue-data-grid-row-odd {
+  background: var(--grid-row-alt-bg);
+}
+
+.vue-data-grid-row-selected {
+  background: var(--grid-row-selected-bg) !important;
+}
+
+.vue-data-grid-row:last-child {
+  border-bottom: none;
+}
+
+.vue-data-grid-cell {
+  display: flex;
+  align-items: center;
+  padding: var(--grid-cell-padding);
+  border-right: 1px solid var(--grid-border-color);
+  min-width: 100px;
+  flex: 1 1 0%;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid blue !important; /* Debug border */
+  background: yellow !important; /* Debug background */
+}
+
+.vue-data-grid-cell:last-child {
+  border-right: none;
+}
+
+.vue-data-grid-cell-content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Pagination Styles */
+.vue-data-grid-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px;
+  border-top: 1px solid var(--grid-border-color);
+  background: var(--grid-header-bg);
+}
+
+.vue-data-grid-pagination button {
+  padding: 6px 12px;
+  border: 1px solid var(--grid-border-color);
+  background: var(--grid-row-bg);
+  color: var(--grid-header-text);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: var(--grid-font-size);
+  transition: background-color 0.2s;
+}
+
+.vue-data-grid-pagination button:hover:not(:disabled) {
+  background: var(--grid-row-hover-bg);
+}
+
+.vue-data-grid-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .vue-data-grid {
+    --grid-font-size: 12px;
+    --grid-cell-padding: 6px 8px;
+  }
+  
+  .vue-data-grid-header-cell,
+  .vue-data-grid-cell {
+    min-width: 80px;
+  }
+}
+
+/* Scrollbar Styles */
+.vue-data-grid-body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.vue-data-grid-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.vue-data-grid-body::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.vue-data-grid-body::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Focus and Selection States */
+.vue-data-grid-cell:focus,
+.vue-data-grid-header-cell:focus {
+  outline: 2px solid #1976d2;
+  outline-offset: -2px;
+}
+
+/* Loading State */
+.vue-data-grid.loading {
+  pointer-events: none;
+}
+
+.vue-data-grid.loading::after {
+  content: 'Loading...';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: var(--grid-border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Empty State */
+.vue-data-grid-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .vue-data-grid {
+    --grid-border-color: #404040;
+    --grid-header-bg: #2d2d2d;
+    --grid-header-text: #fff;
+    --grid-row-bg: #1e1e1e;
+    --grid-row-alt-bg: #252525;
+    --grid-row-hover-bg: #333;
+    --grid-row-selected-bg: #1e3a5f;
+  }
+  
+  .vue-data-grid-body::-webkit-scrollbar-track {
+    background: #2d2d2d;
+  }
+  
+  .vue-data-grid-body::-webkit-scrollbar-thumb {
+    background: #555;
+  }
+  
+  .vue-data-grid-body::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .vue-data-grid {
+    border: none;
+    box-shadow: none;
+  }
+  
+  .vue-data-grid-body {
+    overflow: visible;
+    height: auto !important;
+  }
+  
+  .vue-data-grid-pagination {
+    display: none;
+  }
+  
+  .vue-data-grid-row {
+    position: static !important;
+    page-break-inside: avoid;
+  }
+}
