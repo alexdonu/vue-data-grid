@@ -12,7 +12,7 @@ import BasicGridExample from './examples/BasicGridExample.vue'
     <main>
       <div class="controls">
         <button>Add More Data (50 rows)</button>
-        <p>Current rows: (currently does not work)</p>
+        <p>Current rows: (currently does not workm)</p>
       </div>
 
       <div class="grid-container">

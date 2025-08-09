@@ -1,45 +1,96 @@
-# vue-data-grid
+# Vue Data Grid
 
-This template should help get you started developing with Vue 3 in Vite.
+A modern, performant Vue 3 data grid component with TypeScript support.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+✅ **Core Features:**
+- Adjustable column widths (drag to resize)
+- Row selection (single/multiple modes)  
+- Cell selection
+- TypeScript support
+- Modular component architecture
 
-## Type Support for `.vue` Imports in TS
+✅ **Events:**
+- Row selection change events
+- Cell selection change events
+- Column resize events
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Installation
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm install vue-data-grid
 ```
 
-### Compile and Hot-Reload for Development
+## Usage
 
-```sh
-npm run dev
+### Basic Example
+
+```vue
+<template>
+  <DataGrid
+    :columns="columns"
+    :data="data"
+    selection-mode="multiple"
+    @row-selection-change="handleRowSelection"
+    @cell-selection-change="handleCellSelection"
+  />
+</template>
+
+<script setup lang="ts">
+import { DataGrid } from 'vue-data-grid'
+import type { Column, RowData } from 'vue-data-grid'
+
+const columns: Column[] = [
+  { field: 'name', header: 'Name', width: 150 },
+  { field: 'age', header: 'Age', width: 80 },
+  { field: 'email', header: 'Email', width: 200 }
+]
+
+const data: RowData[] = [
+  { id: 1, name: 'John Doe', age: 30, email: 'john@example.com' },
+  { id: 2, name: 'Jane Smith', age: 28, email: 'jane@example.com' }
+]
+
+const handleRowSelection = (event) => {
+  console.log('Selected rows:', event.selectedRowData)
+}
+
+const handleCellSelection = (event) => {
+  console.log('Selected cells:', event.positions)
+}
+</script>
 ```
 
-### Type-Check, Compile and Minify for Production
+## Props
 
-```sh
-npm run build
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `columns` | `Column[]` | required | Column definitions |
+| `data` | `RowData[]` | required | Row data |
+| `selection-mode` | `'single' \| 'multiple'` | `'single'` | Row selection mode |
+
+## Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `row-selection-change` | `SelectionChangeEvent` | Fired when row selection changes |
+| `cell-selection-change` | `CellSelectionChangeEvent` | Fired when cell selection changes |
+
+## Types
+
+```typescript
+interface Column {
+  field: string
+  header: string
+  width: number
+}
+
+interface RowData extends Record<string, unknown> {
+  id: string | number
+}
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## License
 
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+MIT © Alexandru Donu
