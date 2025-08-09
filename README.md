@@ -19,7 +19,7 @@ A modern, performant Vue 3 data grid component with TypeScript support.
 ## Installation
 
 ```bash
-npm install vue-data-grid
+npm install vue3-data-grid
 ```
 
 ## Usage
@@ -38,8 +38,8 @@ npm install vue-data-grid
 </template>
 
 <script setup lang="ts">
-import { DataGrid } from 'vue-data-grid'
-import type { Column, RowData } from 'vue-data-grid'
+import { DataGrid } from 'vue3-data-grid'
+import type { Column, RowData } from 'vue3-data-grid'
 
 const columns: Column[] = [
   { field: 'name', header: 'Name', width: 150 },

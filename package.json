@@ -1,14 +1,21 @@
 {
-  "name": "vue-data-grid",
+  "name": "vue3-data-grid",
   "version": "0.1.0",
   "private": false,
   "description": "A modern, performant Vue 3 data grid component with TypeScript support",
-  "keywords": ["vue", "vue3", "datagrid", "table", "typescript", "component"],
+  "keywords": [
+    "vue",
+    "vue3",
+    "datagrid",
+    "table",
+    "typescript",
+    "component"
+  ],
   "author": "Alexandru Donu <donu200000@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexdonu/vue-data-grid.git"
+    "url": "git+https://github.com/alexdonu/vue-data-grid.git"
   },
   "homepage": "https://github.com/alexdonu/vue-data-grid#readme",
   "bugs": {
